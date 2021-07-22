@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 /**
  * Create by Ankur @ Worktable.sg
  */
-open class CountryViewHolder : RecyclerView.ViewHolder {
+open class CountryViewHolder(rootView: View) : RecyclerView.ViewHolder(rootView) {
 
     val text1: TextView;
     val text2: TextView;
     val countText: TextView;
 
-    constructor(rootView: View) : super(rootView) {
+    init {
         text1 = rootView.findViewById(R.id.text1)
         text2 = rootView.findViewById(R.id.text2)
         countText = rootView.findViewById(R.id.count)
