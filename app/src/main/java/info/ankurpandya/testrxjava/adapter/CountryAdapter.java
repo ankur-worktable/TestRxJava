@@ -1,4 +1,4 @@
-package info.ankurpandya.testrxjava;
+package info.ankurpandya.testrxjava.adapter;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -10,7 +10,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import info.ankurpandya.testrxjava.responses.Country;
+import info.ankurpandya.testrxjava.R;
+import info.ankurpandya.testrxjava.api.responses.Country;
 
 /**
  * Create by Ankur @ Worktable.sg
@@ -18,9 +19,11 @@ import info.ankurpandya.testrxjava.responses.Country;
 public class CountryAdapter extends RecyclerView.Adapter<CountryViewHolder> {
 
     private final List<Country> countryList;
+    private final CountryHandler handler;
 
-    public CountryAdapter(List<Country> countryList) {
+    public CountryAdapter(List<Country> countryList, CountryHandler handler) {
         this.countryList = countryList;
+        this.handler = handler;
     }
 
     @NonNull
@@ -29,7 +32,8 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryViewHolder> {
     public CountryViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         return new CountryViewHolder(
                 LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.item_country, parent, false)
+                        .inflate(R.layout.item_country, parent, false),
+                handler
         );
     }
 
