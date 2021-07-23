@@ -2,6 +2,7 @@ package info.ankurpandya.testrxjava.fragments;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
@@ -16,8 +17,9 @@ import info.ankurpandya.testrxjava.R;
 import info.ankurpandya.testrxjava.adapter.CountryAdapter;
 import info.ankurpandya.testrxjava.adapter.CountryHandler;
 import info.ankurpandya.testrxjava.api.responses.Country;
+import info.ankurpandya.testrxjava.utils.StringUtils;
 import info.ankurpandya.testrxjava.viewmodel.CountryListViewModel;
-import io.reactivex.rxjava3.schedulers.Schedulers;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
 /**
  * Create by Ankur @ Worktable.sg
@@ -26,6 +28,8 @@ public class FragmentCountryList extends BaseFragment implements CountryHandler 
 
     private CountryAdapter adapter;
     private CountryListViewModel viewModel;
+    private View view_progress;
+    private TextView txt_progress;
 
     public static FragmentCountryList getInstance() {
         return new FragmentCountryList();
@@ -41,6 +45,8 @@ public class FragmentCountryList extends BaseFragment implements CountryHandler 
     @Override
     public void bindViews(View rootView) {
         RecyclerView list = rootView.findViewById(R.id.list);
+        view_progress = rootView.findViewById(R.id.view_progress);
+        txt_progress = rootView.findViewById(R.id.txt_progress);
         adapter = new CountryAdapter(new ArrayList<>(), this);
         list.setAdapter(adapter);
     }
@@ -59,12 +65,13 @@ public class FragmentCountryList extends BaseFragment implements CountryHandler 
     private void loadCountries() {
         register(
                 viewModel.getCountries()
-                        .observeOn(Schedulers.single())
+                        .doOnSubscribe(disposable -> showProgress("Loading countries.."))
+                        .observeOn(AndroidSchedulers.mainThread())
                         .map(countries -> {
                             adapter.addItems(countries);
                             return true;
                         })
-                        .doOnComplete(this::updateMessage)
+                        .doOnComplete(this::hideProgess)
                         .subscribe(
                                 success -> {
                                 },
@@ -73,11 +80,26 @@ public class FragmentCountryList extends BaseFragment implements CountryHandler 
         );
     }
 
+    private void showProgress(String text) {
+        view_progress.setVisibility(View.VISIBLE);
+        if (StringUtils.isValidText(text)) {
+            txt_progress.setVisibility(View.VISIBLE);
+            txt_progress.setText(text);
+        } else {
+            txt_progress.setVisibility(View.GONE);
+        }
+    }
+
+    private void hideProgess() {
+        view_progress.setVisibility(View.GONE);
+    }
+
     private void handleAPIFail(Throwable error) {
         System.out.println("API call failed");
         error.printStackTrace();
         //Toast.makeText(getApplicationContext(), "An error has occurred", Toast.LENGTH_LONG).show();
         updateMessage();
+        hideProgess();
     }
 
     private void updateMessage() {
