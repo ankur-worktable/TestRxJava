@@ -14,6 +14,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RetrofitClient {
 
+    String BASE_URL = "https://restcountries.eu/rest/v2/";
+
     private static RetrofitClient instance = null;
     private Api myApi;
 
@@ -25,7 +27,7 @@ public class RetrofitClient {
                 .setLenient()
                 .create();
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Api.BASE_URL)
+                .baseUrl(BASE_URL)
                 .client(client)
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))

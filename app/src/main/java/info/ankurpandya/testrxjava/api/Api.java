@@ -13,7 +13,6 @@ import retrofit2.http.Path;
 public interface Api {
 
     //String BASE_URL = "https://api.printful.com/";
-    String BASE_URL = "https://restcountries.eu/rest/v2/";
 
     //@GET("countries")
     @GET("all?fields=name;flag;cioc;alpha3Code")
