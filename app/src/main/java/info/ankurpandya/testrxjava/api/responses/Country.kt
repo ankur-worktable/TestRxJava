@@ -1,6 +1,7 @@
 package info.ankurpandya.testrxjava.api.responses
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /**
  * Create by Ankur @ Worktable.sg
@@ -30,4 +31,4 @@ data class Country(
     @SerializedName("currencies") val currencies: List<Currency>,
     @SerializedName("languages") val languages: List<Language>,
     @SerializedName("regionalBlocs") val regionalBlocs: List<RegionalBloc>,
-)
+) : Serializable

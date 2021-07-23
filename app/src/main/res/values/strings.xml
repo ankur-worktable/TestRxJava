@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TestRxJava</string>
+    <string name="key_value_separator">:</string>
+    <string name="valid_desc">adadas ada ada adadsasd</string>
 </resources>

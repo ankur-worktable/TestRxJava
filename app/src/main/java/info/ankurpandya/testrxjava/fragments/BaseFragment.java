@@ -1,5 +1,6 @@
 package info.ankurpandya.testrxjava.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,12 +16,15 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import info.ankurpandya.testrxjava.activities.MainCallBack;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
  * Create by Ankur @ Worktable.sg
  */
 public abstract class BaseFragment extends Fragment {
+
+    protected MainCallBack mainCallBack;
     private final List<Disposable> disposableList = new ArrayList<>();
 
     @Override
@@ -50,6 +54,23 @@ public abstract class BaseFragment extends Fragment {
             }
         }
         super.onDestroy();
+    }
+
+    @Override
+    public void onAttach(@NonNull @NotNull Context context) {
+        super.onAttach(context);
+        if (context instanceof MainCallBack) {
+            mainCallBack = (MainCallBack) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement MainCallBack");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mainCallBack = null;
     }
 
     protected abstract @LayoutRes

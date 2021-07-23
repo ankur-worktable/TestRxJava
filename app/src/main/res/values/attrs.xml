@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="KeyValuePairView">
+        <attr name="android:hint" />
+        <attr name="android:text" />
+        <attr name="android:orientation" />
+        <attr name="android:textColor" />
+        <attr name="android:textColorHint" />
+        <attr name="android:maxLines" />
+        <attr name="android:ellipsize" />
+        <attr name="android:gravity" />
+        <attr name="android:minLines" />
+    </declare-styleable>
+</resources>
