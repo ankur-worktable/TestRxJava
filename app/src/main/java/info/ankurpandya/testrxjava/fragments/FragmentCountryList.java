@@ -17,6 +17,7 @@ import info.ankurpandya.testrxjava.adapter.CountryAdapter;
 import info.ankurpandya.testrxjava.adapter.CountryHandler;
 import info.ankurpandya.testrxjava.api.RetrofitClient;
 import info.ankurpandya.testrxjava.api.responses.Country;
+import info.ankurpandya.testrxjava.utils.StringUtils;
 import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
@@ -52,10 +53,10 @@ public class FragmentCountryList extends BaseFragment implements CountryHandler 
 
     @Override
     public void onCountrySelected(@NotNull Country country) {
-        if (country.getAlpha2Code() == null) {
-            loadCountryDetails(country.getAlpha3Code());
-        } else {
+        if (StringUtils.isValidText(country.getAlpha2Code())) {
             renderCountry(country);
+        } else {
+            loadCountryDetails(country);
         }
     }
 
@@ -83,9 +84,9 @@ public class FragmentCountryList extends BaseFragment implements CountryHandler 
         );
     }
 
-    private void loadCountryDetails(String countryCode) {
+    private void loadCountryDetails(Country country) {
         register(
-                RetrofitClient.getInstance().getMyApi().getCountryDetail(countryCode)
+                RetrofitClient.getInstance().getMyApi().getCountryDetail(country.getAlpha3Code())
                         .subscribeOn(Schedulers.io())
 //                        .map(response -> {
 //                            //adapter.addItems(response.getCountries());
@@ -98,7 +99,8 @@ public class FragmentCountryList extends BaseFragment implements CountryHandler 
                                     getActivity().runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            renderCountry(response);
+                                            //country.copy(response);
+                                            renderCountry(country);
                                         }
                                     });
                                 },
