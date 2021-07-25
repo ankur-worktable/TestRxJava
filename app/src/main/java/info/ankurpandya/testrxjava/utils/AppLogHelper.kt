@@ -12,8 +12,12 @@ class AppLogHelper {
         var enableLogging = true
 
         fun log(string: String) {
+            log(TAG, string)
+        }
+
+        fun log(tag: String, string: String) {
             if (!enableLogging) return
-            Log.d(TAG, string)
+            Log.d(tag, string)
         }
     }
 }

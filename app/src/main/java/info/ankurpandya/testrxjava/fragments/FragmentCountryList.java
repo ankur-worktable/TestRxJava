@@ -30,16 +30,10 @@ public class FragmentCountryList extends BaseFragment implements CountryHandler 
     private CountryListViewModel viewModel;
     private View view_progress;
     private TextView txt_progress;
+    private View action_button;
 
     public static FragmentCountryList getInstance() {
         return new FragmentCountryList();
-    }
-
-    @Override
-    public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        viewModel = new CountryListViewModel();
-        loadCountries();
     }
 
     @Override
@@ -47,8 +41,17 @@ public class FragmentCountryList extends BaseFragment implements CountryHandler 
         RecyclerView list = rootView.findViewById(R.id.list);
         view_progress = rootView.findViewById(R.id.view_progress);
         txt_progress = rootView.findViewById(R.id.txt_progress);
+        action_button = rootView.findViewById(R.id.action_button);
         adapter = new CountryAdapter(new ArrayList<>(), this);
         list.setAdapter(adapter);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        viewModel = new CountryListViewModel();
+        action_button.setOnClickListener(v -> loadCountries());
+        hideProgess();
     }
 
     @Override
@@ -63,6 +66,7 @@ public class FragmentCountryList extends BaseFragment implements CountryHandler 
     }
 
     private void loadCountries() {
+        adapter.clearItems();
         register(
                 viewModel.getCountries()
                         .doOnSubscribe(disposable -> showProgress("Loading countries.."))

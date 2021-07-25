@@ -56,4 +56,11 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryViewHolder> {
         }
         return 0;
     }
+
+    public void clearItems() {
+        if (countryList != null) {
+            countryList.clear();
+            notifyDataSetChanged();
+        }
+    }
 }
