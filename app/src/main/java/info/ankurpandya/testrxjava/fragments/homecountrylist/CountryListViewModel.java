@@ -1,4 +1,4 @@
-package info.ankurpandya.testrxjava.viewmodel;
+package info.ankurpandya.testrxjava.fragments.homecountrylist;
 
 import androidx.lifecycle.ViewModel;
 

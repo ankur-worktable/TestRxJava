@@ -1,4 +1,4 @@
-package info.ankurpandya.testrxjava.fragments;
+package info.ankurpandya.testrxjava.fragments.countrydetails;
 
 import android.os.Bundle;
 import android.view.View;
@@ -14,17 +14,15 @@ import com.bumptech.glide.Glide;
 import org.jetbrains.annotations.NotNull;
 
 import info.ankurpandya.testrxjava.R;
-import info.ankurpandya.testrxjava.adapter.CountryHandler;
-import info.ankurpandya.testrxjava.api.RetrofitClient;
 import info.ankurpandya.testrxjava.api.responses.Country;
 import info.ankurpandya.testrxjava.customviews.KeyValuePairView;
-import info.ankurpandya.testrxjava.utils.StringUtils;
-import io.reactivex.rxjava3.schedulers.Schedulers;
+import info.ankurpandya.testrxjava.fragments.BaseFragment;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
 /**
  * Create by Ankur @ Worktable.sg
  */
-public class FragmentCountryDetail extends BaseFragment implements CountryHandler {
+public class FragmentCountryDetail extends BaseFragment {
 
     private static final String ARG_COUNTRY = "arg_country";
 
@@ -36,6 +34,8 @@ public class FragmentCountryDetail extends BaseFragment implements CountryHandle
     private KeyValuePairView txt_ios3;
 
     private Country country;
+
+    private CountryDetailViewModel viewModel;
 
     public static FragmentCountryDetail getInstance(Country country) {
         FragmentCountryDetail fragment = new FragmentCountryDetail();
@@ -51,15 +51,18 @@ public class FragmentCountryDetail extends BaseFragment implements CountryHandle
         if (getArguments() != null) {
             country = (Country) getArguments().getSerializable(ARG_COUNTRY);
         }
+        viewModel = new CountryDetailViewModel(country);
     }
 
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        renderCountry(country);
-        if (!StringUtils.isValidText(country.getAlpha2Code())) {
-            loadCountryDetails(country);
-        }
+        register(
+                viewModel.getCountryObserver()
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(theCountry -> renderCountry(theCountry))
+        );
+        loadCountryDetails(country);
     }
 
     @Override
@@ -78,33 +81,10 @@ public class FragmentCountryDetail extends BaseFragment implements CountryHandle
         return R.layout.fragment_list_detail;
     }
 
-    @Override
-    public void onCountrySelected(@NotNull Country country) {
-
-    }
-
     private void loadCountryDetails(Country country) {
         register(
-                RetrofitClient.getInstance().getMyApi().getCountryDetail(country.getAlpha3Code())
-                        .subscribeOn(Schedulers.io())
-//                        .map(response -> {
-//                            //adapter.addItems(response.getCountries());
-//                            updateMessage();
-//                            return true;
-//                        })
-                        //.observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(
-                                response -> {
-                                    getActivity().runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            //country.copy(response);
-                                            renderCountry(response);
-                                        }
-                                    });
-                                },
-                                this::handleAPIFail
-                        )
+                viewModel.loadCountryDetails()
+                        .subscribe()
         );
     }
 

@@ -1,4 +1,4 @@
-package info.ankurpandya.testrxjava.fragments;
+package info.ankurpandya.testrxjava.fragments.homecountrylist;
 
 import android.os.Bundle;
 import android.view.View;
@@ -17,8 +17,8 @@ import info.ankurpandya.testrxjava.R;
 import info.ankurpandya.testrxjava.adapter.CountryAdapter;
 import info.ankurpandya.testrxjava.adapter.CountryHandler;
 import info.ankurpandya.testrxjava.api.responses.Country;
+import info.ankurpandya.testrxjava.fragments.BaseFragment;
 import info.ankurpandya.testrxjava.utils.StringUtils;
-import info.ankurpandya.testrxjava.viewmodel.CountryListViewModel;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
 /**

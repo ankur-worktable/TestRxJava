@@ -3,8 +3,8 @@ package info.ankurpandya.testrxjava.activities
 import android.os.Bundle
 import info.ankurpandya.testrxjava.R
 import info.ankurpandya.testrxjava.api.responses.Country
-import info.ankurpandya.testrxjava.fragments.FragmentCountryDetail
-import info.ankurpandya.testrxjava.fragments.FragmentCountryList
+import info.ankurpandya.testrxjava.fragments.countrydetails.FragmentCountryDetail
+import info.ankurpandya.testrxjava.fragments.homecountrylist.FragmentCountryList
 
 class MainActivity : BaseActivity(), MainCallBack {
     override fun onCreate(savedInstanceState: Bundle?) {
