@@ -42,6 +42,21 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryViewHolder> {
         holder.bind(countryList.get(position), position + 1);
     }
 
+    public void clearItems() {
+        if (countryList != null) {
+            countryList.clear();
+            notifyDataSetChanged();
+        }
+    }
+
+    public void replaceItems(List<Country> newCountries) {
+        if (countryList != null) {
+            countryList.clear();
+            countryList.addAll(newCountries);
+            notifyDataSetChanged();
+        }
+    }
+
     public void addItems(List<Country> newCountries) {
         if (countryList != null) {
             countryList.addAll(newCountries);
@@ -55,12 +70,5 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryViewHolder> {
             return countryList.size();
         }
         return 0;
-    }
-
-    public void clearItems() {
-        if (countryList != null) {
-            countryList.clear();
-            notifyDataSetChanged();
-        }
     }
 }

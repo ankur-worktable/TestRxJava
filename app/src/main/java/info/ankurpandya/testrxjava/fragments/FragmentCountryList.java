@@ -51,6 +51,24 @@ public class FragmentCountryList extends BaseFragment implements CountryHandler 
         super.onViewCreated(view, savedInstanceState);
         viewModel = new CountryListViewModel();
         action_button.setOnClickListener(v -> loadCountries());
+
+        register(
+                viewModel.getCountryObserver()
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(list -> adapter.replaceItems(list))
+        );
+        register(
+                viewModel.getLoadingObserver()
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(isLoading -> {
+                            if (isLoading) {
+                                showProgress("Loading countries..");
+                            } else {
+                                hideProgess();
+                            }
+                        })
+        );
+
         hideProgess();
     }
 
@@ -66,21 +84,9 @@ public class FragmentCountryList extends BaseFragment implements CountryHandler 
     }
 
     private void loadCountries() {
-        adapter.clearItems();
         register(
                 viewModel.getCountries()
-                        .doOnSubscribe(disposable -> showProgress("Loading countries.."))
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .map(countries -> {
-                            adapter.addItems(countries);
-                            return true;
-                        })
-                        .doOnComplete(this::hideProgess)
-                        .subscribe(
-                                success -> {
-                                },
-                                this::handleAPIFail
-                        )
+                        .subscribe()
         );
     }
 
