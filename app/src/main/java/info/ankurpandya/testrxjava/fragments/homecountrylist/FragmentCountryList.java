@@ -68,6 +68,11 @@ public class FragmentCountryList extends BaseFragment implements CountryHandler 
                             }
                         })
         );
+        register(
+                viewModel.getErrorObserver()
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(exception -> showMessage(exception.getMessage()))
+        );
 
         hideProgess();
     }
@@ -86,7 +91,12 @@ public class FragmentCountryList extends BaseFragment implements CountryHandler 
     private void loadCountries() {
         register(
                 viewModel.getCountries()
-                        .subscribe()
+                        .subscribe(
+                                data -> {
+                                },
+                                error -> {
+                                }
+                        )
         );
     }
 

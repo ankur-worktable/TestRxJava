@@ -11,9 +11,12 @@ import io.reactivex.rxjava3.subjects.BehaviorSubject;
  */
 public class CountryDetailViewModel {
 
-    BehaviorSubject<Boolean> loadingSubject = BehaviorSubject.create();
-    BehaviorSubject<Country> countryDetails = BehaviorSubject.create();
+    private BehaviorSubject<Boolean> loadingSubject = BehaviorSubject.create();
+    private BehaviorSubject<Country> countryDetails = BehaviorSubject.create();
+    private BehaviorSubject<Throwable> errorDetails = BehaviorSubject.create();
     private Country country;
+
+    private Observable<Country> observable;
 
     public CountryDetailViewModel(Country country) {
         this.country = country;
@@ -29,18 +32,26 @@ public class CountryDetailViewModel {
         return loadingSubject.share();
     }
 
+    public Observable<Throwable> getErrorObserver() {
+        return errorDetails.share();
+    }
+
     public Observable<Country> loadCountryDetails() {
         if (loadingSubject != null && loadingSubject.getValue()) {
             return Observable.empty();
         }
         loadingSubject.onNext(true);
         countryDetails.onNext(country);
-        return RetrofitClient.getInstance().getMyApi().getCountryDetail(country.getAlpha3Code())
-                .subscribeOn(Schedulers.io())
-                .doOnNext(country -> {
-                    CountryDetailViewModel.this.country = country;
-                    countryDetails.onNext(country);
-                })
-                .doOnTerminate(() -> loadingSubject.onNext(false));
+        if (observable == null) {
+            observable = RetrofitClient.getInstance().getMyApi().getCountryDetail(country.getAlpha3Code())
+                    .subscribeOn(Schedulers.io())
+                    .doOnNext(country -> {
+                        CountryDetailViewModel.this.country = country;
+                        countryDetails.onNext(country);
+                    })
+                    .doOnError(exception -> errorDetails.onNext(exception))
+                    .doOnTerminate(() -> loadingSubject.onNext(false));
+        }
+        return observable;
     }
 }

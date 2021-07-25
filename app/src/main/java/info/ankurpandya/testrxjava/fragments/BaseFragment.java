@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
@@ -71,6 +72,13 @@ public abstract class BaseFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mainCallBack = null;
+    }
+
+    protected void showMessage(String message) {
+        if (getContext() == null) {
+            return;
+        }
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     protected abstract @LayoutRes

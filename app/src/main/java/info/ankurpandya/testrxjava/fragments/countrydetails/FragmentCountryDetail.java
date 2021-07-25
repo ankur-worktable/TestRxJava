@@ -62,6 +62,11 @@ public class FragmentCountryDetail extends BaseFragment {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(theCountry -> renderCountry(theCountry))
         );
+        register(
+                viewModel.getErrorObserver()
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(exception -> showMessage(exception.getMessage()))
+        );
         loadCountryDetails(country);
     }
 
@@ -84,7 +89,12 @@ public class FragmentCountryDetail extends BaseFragment {
     private void loadCountryDetails(Country country) {
         register(
                 viewModel.loadCountryDetails()
-                        .subscribe()
+                        .subscribe(
+                                data -> {
+                                },
+                                error -> {
+                                }
+                        )
         );
     }
 

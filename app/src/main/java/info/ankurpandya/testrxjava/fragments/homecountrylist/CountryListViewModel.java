@@ -18,6 +18,7 @@ public class CountryListViewModel extends ViewModel {
 
     private BehaviorSubject<List<Country>> countrySubject = BehaviorSubject.create();
     private BehaviorSubject<Boolean> loadingSubject = BehaviorSubject.create();
+    private BehaviorSubject<Throwable> errorDetails = BehaviorSubject.create();
 
     private Observable<List<Country>> observable;
 
@@ -40,6 +41,7 @@ public class CountryListViewModel extends ViewModel {
                         fullList.addAll(list);
                         countrySubject.onNext(fullList);
                     })
+                    .doOnError(exception -> errorDetails.onNext(exception))
                     .doOnTerminate(() -> loadingSubject.onNext(false));
         }
         return observable;
@@ -51,6 +53,10 @@ public class CountryListViewModel extends ViewModel {
 
     public Observable<Boolean> getLoadingObserver() {
         return loadingSubject.share();
+    }
+
+    public Observable<Throwable> getErrorObserver() {
+        return errorDetails.share();
     }
 
 }
