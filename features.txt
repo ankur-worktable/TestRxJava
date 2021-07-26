@@ -1,0 +1,13 @@
+- MVVP
+- Kotlin
+- RxJava
+- Swipe Refresh
+- Android navigation graph
+- Container transition
+- Retrofit
+- Offline caching with Retrofit
+- REST API with Gson
+- Image loading using Glide
+
+Coming:
+- Animations
