@@ -24,7 +24,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
  */
 public class FragmentCountryDetail extends BaseFragment {
 
-    private static final String ARG_COUNTRY = "arg_country";
+    private static final String ARG_COUNTRY = "country";
 
     private ImageView img_banner;
     private ImageView img_country;
@@ -111,17 +111,6 @@ public class FragmentCountryDetail extends BaseFragment {
                                 }
                         )
         );
-    }
-
-    private void handleAPIFail(Throwable error) {
-        System.out.println("API call failed");
-        error.printStackTrace();
-        //Toast.makeText(getApplicationContext(), "An error has occurred", Toast.LENGTH_LONG).show();
-        updateMessage();
-    }
-
-    private void updateMessage() {
-
     }
 
     private void renderCountry(Country country) {

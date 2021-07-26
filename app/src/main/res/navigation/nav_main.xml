@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/fragmentCountryList">
+
+    <fragment
+        android:id="@+id/fragmentCountryList"
+        android:name="info.ankurpandya.testrxjava.fragments.homecountrylist.FragmentCountryList"
+        android:label="FragmentCountryList"
+        tools:layout="@layout/fragment_list_country">
+        <action
+            android:id="@+id/action_open_country_detail"
+            app:destination="@id/fragmentCountryDetails" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentCountryDetails"
+        android:name="info.ankurpandya.testrxjava.fragments.countrydetails.FragmentCountryDetail"
+        android:label="FragmentCountryDetail"
+        tools:layout="@layout/fragment_list_detail">
+        <argument
+            android:name="country"
+            app:argType="info.ankurpandya.testrxjava.api.responses.Country" />
+    </fragment>
+</navigation>
