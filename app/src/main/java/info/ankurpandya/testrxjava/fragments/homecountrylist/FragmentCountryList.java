@@ -8,6 +8,7 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -18,7 +19,6 @@ import info.ankurpandya.testrxjava.adapter.CountryAdapter;
 import info.ankurpandya.testrxjava.adapter.CountryHandler;
 import info.ankurpandya.testrxjava.api.responses.Country;
 import info.ankurpandya.testrxjava.fragments.BaseFragment;
-import info.ankurpandya.testrxjava.utils.StringUtils;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
 /**
@@ -31,6 +31,7 @@ public class FragmentCountryList extends BaseFragment implements CountryHandler 
     private View view_progress;
     private TextView txt_progress;
     private View action_button;
+    private SwipeRefreshLayout swiperefresh;
 
     public static FragmentCountryList getInstance() {
         return new FragmentCountryList();
@@ -42,6 +43,7 @@ public class FragmentCountryList extends BaseFragment implements CountryHandler 
         view_progress = rootView.findViewById(R.id.view_progress);
         txt_progress = rootView.findViewById(R.id.txt_progress);
         action_button = rootView.findViewById(R.id.action_button);
+        swiperefresh = rootView.findViewById(R.id.swiperefresh);
         adapter = new CountryAdapter(new ArrayList<>(), this);
         list.setAdapter(adapter);
     }
@@ -51,6 +53,7 @@ public class FragmentCountryList extends BaseFragment implements CountryHandler 
         super.onViewCreated(view, savedInstanceState);
         viewModel = new CountryListViewModel();
         action_button.setOnClickListener(v -> loadCountries());
+        action_button.setVisibility(View.GONE);
 
         register(
                 viewModel.getCountryObserver()
@@ -74,7 +77,9 @@ public class FragmentCountryList extends BaseFragment implements CountryHandler 
                         .subscribe(exception -> showMessage(exception.getMessage()))
         );
 
-        hideProgess();
+        swiperefresh.setOnRefreshListener(this::loadCountries);
+        //hideProgess();
+        loadCountries();
     }
 
     @Override
@@ -101,17 +106,19 @@ public class FragmentCountryList extends BaseFragment implements CountryHandler 
     }
 
     private void showProgress(String text) {
-        view_progress.setVisibility(View.VISIBLE);
-        if (StringUtils.isValidText(text)) {
-            txt_progress.setVisibility(View.VISIBLE);
-            txt_progress.setText(text);
-        } else {
-            txt_progress.setVisibility(View.GONE);
-        }
+//        view_progress.setVisibility(View.VISIBLE);
+//        if (StringUtils.isValidText(text)) {
+//            txt_progress.setVisibility(View.VISIBLE);
+//            txt_progress.setText(text);
+//        } else {
+//            txt_progress.setVisibility(View.GONE);
+//        }
+        swiperefresh.setRefreshing(true);
     }
 
     private void hideProgess() {
-        view_progress.setVisibility(View.GONE);
+        //view_progress.setVisibility(View.GONE);
+        swiperefresh.setRefreshing(false);
     }
 
     private void handleAPIFail(Throwable error) {
