@@ -32,6 +32,13 @@ public class FragmentCountryDetail extends BaseFragment {
     private KeyValuePairView txt_cioc;
     private KeyValuePairView txt_ios2;
     private KeyValuePairView txt_ios3;
+    private KeyValuePairView txt_population;
+    private KeyValuePairView txt_capital;
+    private KeyValuePairView txt_region;
+    private KeyValuePairView txt_subregion;
+    private KeyValuePairView txt_demonym;
+    private KeyValuePairView txt_area;
+    private KeyValuePairView txt_gini;
 
     private Country country;
 
@@ -67,6 +74,7 @@ public class FragmentCountryDetail extends BaseFragment {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(exception -> showMessage(exception.getMessage()))
         );
+        view.setTransitionName(country.getAlpha3Code());
         loadCountryDetails(country);
     }
 
@@ -78,6 +86,13 @@ public class FragmentCountryDetail extends BaseFragment {
         txt_cioc = rootView.findViewById(R.id.txt_cioc);
         txt_ios2 = rootView.findViewById(R.id.txt_ios2);
         txt_ios3 = rootView.findViewById(R.id.txt_ios3);
+        txt_population = rootView.findViewById(R.id.txt_population);
+        txt_capital = rootView.findViewById(R.id.txt_capital);
+        txt_region = rootView.findViewById(R.id.txt_region);
+        txt_subregion = rootView.findViewById(R.id.txt_subregion);
+        txt_demonym = rootView.findViewById(R.id.txt_demonym);
+        txt_area = rootView.findViewById(R.id.txt_area);
+        txt_gini = rootView.findViewById(R.id.txt_gini);
     }
 
     @Override
@@ -115,6 +130,14 @@ public class FragmentCountryDetail extends BaseFragment {
         txt_cioc.setText(country.getCioc());
         txt_ios2.setText(country.getAlpha2Code());
         txt_ios3.setText(country.getAlpha3Code());
+        txt_population.setText(String.valueOf(country.getPopulation()));
+        txt_capital.setText(country.getCapital());
+        txt_region.setText(country.getRegion());
+        txt_subregion.setText(country.getSubregion());
+        txt_demonym.setText(country.getDemonym());
+        txt_area.setText(country.getArea() + " Sq Feet");
+        txt_gini.setText(String.valueOf(country.getGini()));
+
         Glide.with(getContext())
                 .load(country.getFlag())
                 .placeholder(R.drawable.img_default)

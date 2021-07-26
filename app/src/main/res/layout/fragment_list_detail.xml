@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".activities.MainActivity">
+<!--    android:transitionGroup="true"-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,6 +75,69 @@
             android:layout_marginHorizontal="12dp"
             android:layout_marginTop="8dp"
             android:hint="ISO3 Code"
+            tools:text="AAA" />
+
+        <info.ankurpandya.testrxjava.customviews.KeyValuePairView
+            android:id="@+id/txt_population"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="8dp"
+            android:hint="Population"
+            tools:text="AAA" />
+
+        <info.ankurpandya.testrxjava.customviews.KeyValuePairView
+            android:id="@+id/txt_capital"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="8dp"
+            android:hint="Capital"
+            tools:text="AAA" />
+
+        <info.ankurpandya.testrxjava.customviews.KeyValuePairView
+            android:id="@+id/txt_region"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="8dp"
+            android:hint="Region"
+            tools:text="AAA" />
+
+        <info.ankurpandya.testrxjava.customviews.KeyValuePairView
+            android:id="@+id/txt_subregion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="8dp"
+            android:hint="Subregion"
+            tools:text="AAA" />
+
+        <info.ankurpandya.testrxjava.customviews.KeyValuePairView
+            android:id="@+id/txt_demonym"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="8dp"
+            android:hint="Demonym"
+            tools:text="AAA" />
+
+        <info.ankurpandya.testrxjava.customviews.KeyValuePairView
+            android:id="@+id/txt_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="8dp"
+            android:hint="Area"
+            tools:text="AAA" />
+
+        <info.ankurpandya.testrxjava.customviews.KeyValuePairView
+            android:id="@+id/txt_gini"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="8dp"
+            android:hint="Gini"
             tools:text="AAA" />
 
     </LinearLayout>
