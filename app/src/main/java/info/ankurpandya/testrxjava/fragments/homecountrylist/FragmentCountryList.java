@@ -51,6 +51,15 @@ public class FragmentCountryList extends BaseFragment implements CountryHandler 
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+//        postponeEnterTransition();
+//        view.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                startPostponedEnterTransition();
+//            }
+//        });
+
         viewModel = new CountryListViewModel();
         action_button.setOnClickListener(v -> loadCountries());
         action_button.setVisibility(View.GONE);
@@ -90,6 +99,14 @@ public class FragmentCountryList extends BaseFragment implements CountryHandler 
 
     @Override
     public void onCountrySelected(@NotNull Country country, View countryItemView) {
+//        MaterialElevationScale exitAnim = new MaterialElevationScale(false);
+//        exitAnim.setDuration(getResources().getInteger(R.integer.reply_motion_duration_large));
+//        MaterialElevationScale enterAnim = new MaterialElevationScale(true);
+//        enterAnim.setDuration(getResources().getInteger(R.integer.reply_motion_duration_large));
+//
+//        setExitTransition(exitAnim);
+//        setReenterTransition(enterAnim);
+
         mainCallBack.onCountrySelected(country, countryItemView);
     }
 

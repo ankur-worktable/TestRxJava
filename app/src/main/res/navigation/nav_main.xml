@@ -11,6 +11,13 @@
         android:label="FragmentSplash"
         tools:layout="@layout/fragment_splash">
 
+        <!--        <action-->
+        <!--            android:id="@+id/action_show_homepage"-->
+        <!--            app:destination="@+id/fragmentCountryList"-->
+        <!--            app:launchSingleTop="true"-->
+        <!--            app:popUpTo="@+id/fragmentSplash"-->
+        <!--            app:popUpToInclusive="true" />-->
+
         <action
             android:id="@+id/action_show_homepage"
             app:destination="@+id/fragmentCountryList"
@@ -29,6 +36,10 @@
         android:name="info.ankurpandya.testrxjava.fragments.homecountrylist.FragmentCountryList"
         android:label="FragmentCountryList"
         tools:layout="@layout/fragment_list_country">
+        <!--        <action-->
+        <!--            android:id="@+id/action_open_country_detail"-->
+        <!--            app:destination="@id/fragmentCountryDetails" />-->
+
         <action
             android:id="@+id/action_open_country_detail"
             app:destination="@id/fragmentCountryDetails"

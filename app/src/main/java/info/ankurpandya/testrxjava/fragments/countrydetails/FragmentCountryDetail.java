@@ -59,6 +59,13 @@ public class FragmentCountryDetail extends BaseFragment {
             country = (Country) getArguments().getSerializable(ARG_COUNTRY);
         }
         viewModel = new CountryDetailViewModel(country);
+
+//        MaterialContainerTransform transform = new MaterialContainerTransform();
+//        transform.setDrawingViewId(R.id.nav_host_fragment);
+//        transform.setDuration(getResources().getInteger(R.integer.reply_motion_duration_large));
+//        transform.setScrimColor(Color.WHITE);
+//        //transform.setAllContainerColors(requireContext().themeColor(R.attr.colorSurface))
+//        setSharedElementEnterTransition(transform);
     }
 
     @Override
@@ -74,7 +81,6 @@ public class FragmentCountryDetail extends BaseFragment {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(exception -> showMessage(exception.getMessage()))
         );
-        view.setTransitionName(country.getAlpha3Code());
         loadCountryDetails(country);
     }
 

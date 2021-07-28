@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions.withCrossFade
+import com.google.android.material.card.MaterialCardView
 import info.ankurpandya.testrxjava.R
 import info.ankurpandya.testrxjava.api.responses.Country
 import info.ankurpandya.testrxjava.utils.StringUtils
@@ -24,6 +25,7 @@ open class CountryViewHolder(val rootView: View, @Nullable val handler: CountryH
     val txt_country_id: TextView;
     val countText: TextView;
     val img_country: ImageView;
+    val cardView: MaterialCardView;
     val requestBuilder: RequestBuilder<Bitmap>
 
     init {
@@ -31,6 +33,7 @@ open class CountryViewHolder(val rootView: View, @Nullable val handler: CountryH
         txt_country_id = rootView.findViewById(R.id.txt_country_id)
         countText = rootView.findViewById(R.id.count)
         img_country = rootView.findViewById(R.id.img_country)
+        cardView = rootView.findViewById(R.id.cardView)
         requestBuilder = Glide.with(rootView.context)
             .asBitmap()
             .centerCrop()
@@ -40,11 +43,11 @@ open class CountryViewHolder(val rootView: View, @Nullable val handler: CountryH
     }
 
     fun bind(country: Country, count: Int) {
-        rootView.transitionName = "email_card_transition_name_" + country.alpha2Code
+        cardView.transitionName = "email_card_transition_name_" + country.alpha2Code
         txt_country_name.text = country.name
         txt_country_id.text = country.alpha3Code
         countText.text = StringUtils.formatNumberCount(count)
         requestBuilder.load(StringUtils.getFlagUrl(country.alpha2Code)).into(img_country)
-        rootView.setOnClickListener { handler?.onCountrySelected(country, rootView) }
+        cardView.setOnClickListener { handler?.onCountrySelected(country, cardView) }
     }
 }

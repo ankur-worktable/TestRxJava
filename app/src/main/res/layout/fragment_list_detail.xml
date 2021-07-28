@@ -1,148 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nested_scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="?android:colorBackground"
+    android:clipToPadding="false"
+    android:fillViewport="true"
     android:transitionName="email_card_detail_transition_name"
+    app:paddingTopSystemWindowInsets="true"
     tools:context=".activities.MainActivity">
-    <!--    android:transitionGroup="true"-->
 
-    <LinearLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="4dp">
+        android:layout_height="wrap_content">
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/animationView"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="12dp"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            app:lottie_autoPlay="true"
-            app:lottie_fileName="anim/world_bip_boop.json"
-            app:lottie_loop="false" />
-
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="12dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="12dp">
 
-            <ImageView
-                android:id="@+id/img_country"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animationView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginHorizontal="4dp"
                 android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                android:src="@drawable/img_default" />
+                android:scaleType="centerCrop"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="anim/world_bip_boop.json"
+                app:lottie_loop="false" />
 
-            <TextView
-                android:id="@+id/txt_country_name"
-                android:layout_width="0dp"
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_weight="1"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-                tools:text="App Name" />
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
+                <ImageView
+                    android:id="@+id/img_country"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/img_default" />
 
-        <info.ankurpandya.testrxjava.customviews.KeyValuePairView
-            android:id="@+id/txt_cioc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="8dp"
-            android:hint="Id"
-            tools:text="AA" />
+                <TextView
+                    android:id="@+id/txt_country_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                    tools:text="App Name" />
 
-        <info.ankurpandya.testrxjava.customviews.KeyValuePairView
-            android:id="@+id/txt_ios2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="8dp"
-            android:hint="ISO2 Code"
-            tools:text="AA" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <info.ankurpandya.testrxjava.customviews.KeyValuePairView
-            android:id="@+id/txt_ios3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="8dp"
-            android:hint="ISO3 Code"
-            tools:text="AAA" />
+            <info.ankurpandya.testrxjava.customviews.KeyValuePairView
+                android:id="@+id/txt_cioc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginTop="8dp"
+                android:hint="Id"
+                tools:text="AA" />
 
-        <info.ankurpandya.testrxjava.customviews.KeyValuePairView
-            android:id="@+id/txt_population"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="8dp"
-            android:hint="Population"
-            tools:text="AAA" />
+            <info.ankurpandya.testrxjava.customviews.KeyValuePairView
+                android:id="@+id/txt_ios2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginTop="8dp"
+                android:hint="ISO2 Code"
+                tools:text="AA" />
 
-        <info.ankurpandya.testrxjava.customviews.KeyValuePairView
-            android:id="@+id/txt_capital"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="8dp"
-            android:hint="Capital"
-            tools:text="AAA" />
+            <info.ankurpandya.testrxjava.customviews.KeyValuePairView
+                android:id="@+id/txt_ios3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginTop="8dp"
+                android:hint="ISO3 Code"
+                tools:text="AAA" />
 
-        <info.ankurpandya.testrxjava.customviews.KeyValuePairView
-            android:id="@+id/txt_region"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="8dp"
-            android:hint="Region"
-            tools:text="AAA" />
+            <info.ankurpandya.testrxjava.customviews.KeyValuePairView
+                android:id="@+id/txt_population"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginTop="8dp"
+                android:hint="Population"
+                tools:text="AAA" />
 
-        <info.ankurpandya.testrxjava.customviews.KeyValuePairView
-            android:id="@+id/txt_subregion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="8dp"
-            android:hint="Subregion"
-            tools:text="AAA" />
+            <info.ankurpandya.testrxjava.customviews.KeyValuePairView
+                android:id="@+id/txt_capital"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginTop="8dp"
+                android:hint="Capital"
+                tools:text="AAA" />
 
-        <info.ankurpandya.testrxjava.customviews.KeyValuePairView
-            android:id="@+id/txt_demonym"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="8dp"
-            android:hint="Demonym"
-            tools:text="AAA" />
+            <info.ankurpandya.testrxjava.customviews.KeyValuePairView
+                android:id="@+id/txt_region"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginTop="8dp"
+                android:hint="Region"
+                tools:text="AAA" />
 
-        <info.ankurpandya.testrxjava.customviews.KeyValuePairView
-            android:id="@+id/txt_area"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="8dp"
-            android:hint="Area"
-            tools:text="AAA" />
+            <info.ankurpandya.testrxjava.customviews.KeyValuePairView
+                android:id="@+id/txt_subregion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginTop="8dp"
+                android:hint="Subregion"
+                tools:text="AAA" />
 
-        <info.ankurpandya.testrxjava.customviews.KeyValuePairView
-            android:id="@+id/txt_gini"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="8dp"
-            android:hint="Gini"
-            tools:text="AAA" />
+            <info.ankurpandya.testrxjava.customviews.KeyValuePairView
+                android:id="@+id/txt_demonym"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginTop="8dp"
+                android:hint="Demonym"
+                tools:text="AAA" />
 
-    </LinearLayout>
-</ScrollView>
+            <info.ankurpandya.testrxjava.customviews.KeyValuePairView
+                android:id="@+id/txt_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginTop="8dp"
+                android:hint="Area"
+                tools:text="AAA" />
+
+            <info.ankurpandya.testrxjava.customviews.KeyValuePairView
+                android:id="@+id/txt_gini"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginTop="8dp"
+                android:hint="Gini"
+                tools:text="AAA" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</androidx.core.widget.NestedScrollView>

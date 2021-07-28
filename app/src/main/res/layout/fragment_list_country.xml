@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?android:colorBackground"
     tools:context=".activities.MainActivity">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -19,6 +20,7 @@
             android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:transitionGroup="true"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="15"
             tools:listitem="@layout/item_country" />
