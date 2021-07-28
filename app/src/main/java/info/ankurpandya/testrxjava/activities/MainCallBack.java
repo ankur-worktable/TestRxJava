@@ -7,4 +7,6 @@ import info.ankurpandya.testrxjava.api.responses.Country;
  */
 public interface MainCallBack {
     void onCountrySelected(Country country);
+
+    void onPresentationCompleted();
 }
