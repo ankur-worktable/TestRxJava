@@ -14,7 +14,11 @@
         <action
             android:id="@+id/action_show_homepage"
             app:destination="@+id/fragmentCountryList"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
             app:launchSingleTop="true"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"
             app:popUpTo="@+id/fragmentSplash"
             app:popUpToInclusive="true" />
 
@@ -27,7 +31,10 @@
         tools:layout="@layout/fragment_list_country">
         <action
             android:id="@+id/action_open_country_detail"
-            app:destination="@id/fragmentCountryDetails" />
+            app:destination="@id/fragmentCountryDetails"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
