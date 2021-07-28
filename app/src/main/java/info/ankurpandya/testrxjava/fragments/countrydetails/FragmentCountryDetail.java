@@ -26,7 +26,6 @@ public class FragmentCountryDetail extends BaseFragment {
 
     private static final String ARG_COUNTRY = "country";
 
-    private ImageView img_banner;
     private ImageView img_country;
     private TextView txt_country_name;
     private KeyValuePairView txt_cioc;
@@ -80,7 +79,6 @@ public class FragmentCountryDetail extends BaseFragment {
 
     @Override
     public void bindViews(View rootView) {
-        img_banner = rootView.findViewById(R.id.img_banner);
         img_country = rootView.findViewById(R.id.img_country);
         txt_country_name = rootView.findViewById(R.id.txt_country_name);
         txt_cioc = rootView.findViewById(R.id.txt_cioc);

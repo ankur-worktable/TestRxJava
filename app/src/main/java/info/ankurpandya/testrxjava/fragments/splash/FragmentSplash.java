@@ -1,14 +1,17 @@
 package info.ankurpandya.testrxjava.fragments.splash;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.airbnb.lottie.LottieAnimationView;
+
 import info.ankurpandya.testrxjava.R;
 import info.ankurpandya.testrxjava.fragments.BaseFragment;
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
 /**
  * Create by Ankur @ Worktable.sg
@@ -16,6 +19,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 public class FragmentSplash extends BaseFragment {
 
     SplashViewModel viewModel;
+    LottieAnimationView animationView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,15 +30,23 @@ public class FragmentSplash extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        register(
-                viewModel.getPresentationObservable()
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(obj -> onPresentationCompleted())
-        );
-        register(
-                viewModel.presentSplash()
-                        .subscribe()
-        );
+//        register(
+//                viewModel.getPresentationObservable()
+//                        .observeOn(AndroidSchedulers.mainThread())
+//                        .subscribe(obj -> onPresentationCompleted())
+//        );
+//        register(
+//                viewModel.presentSplash()
+//                        .subscribe()
+//        );
+
+        animationView.addAnimatorListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                onPresentationCompleted();
+            }
+        });
     }
 
     @Override
@@ -53,6 +65,6 @@ public class FragmentSplash extends BaseFragment {
 
     @Override
     protected void bindViews(View rootView) {
-
+        animationView = rootView.findViewById(R.id.animationView);
     }
 }
