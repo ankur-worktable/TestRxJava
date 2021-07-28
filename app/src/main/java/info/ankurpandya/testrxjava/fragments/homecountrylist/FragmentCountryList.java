@@ -89,8 +89,8 @@ public class FragmentCountryList extends BaseFragment implements CountryHandler 
     }
 
     @Override
-    public void onCountrySelected(@NotNull Country country) {
-        mainCallBack.onCountrySelected(country);
+    public void onCountrySelected(@NotNull Country country, View countryItemView) {
+        mainCallBack.onCountrySelected(country, countryItemView);
     }
 
     private void loadCountries() {

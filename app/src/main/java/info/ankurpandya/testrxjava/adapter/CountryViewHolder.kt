@@ -40,10 +40,11 @@ open class CountryViewHolder(val rootView: View, @Nullable val handler: CountryH
     }
 
     fun bind(country: Country, count: Int) {
+        rootView.transitionName = "email_card_transition_name_" + country.alpha2Code
         txt_country_name.text = country.name
         txt_country_id.text = country.alpha3Code
         countText.text = StringUtils.formatNumberCount(count)
         requestBuilder.load(StringUtils.getFlagUrl(country.alpha2Code)).into(img_country)
-        rootView.setOnClickListener { handler?.onCountrySelected(country) }
+        rootView.setOnClickListener { handler?.onCountrySelected(country, rootView) }
     }
 }
