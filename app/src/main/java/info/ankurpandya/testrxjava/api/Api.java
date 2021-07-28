@@ -15,7 +15,7 @@ public interface Api {
     //String BASE_URL = "https://api.printful.com/";
 
     //@GET("countries")
-    @GET("all?fields=name;flag;cioc;alpha3Code")
+    @GET("all?fields=name;flag;cioc;alpha3Code;alpha2Code")
     Observable<List<Country>> getCountries();
 
     @GET("alpha/{countryCode}")

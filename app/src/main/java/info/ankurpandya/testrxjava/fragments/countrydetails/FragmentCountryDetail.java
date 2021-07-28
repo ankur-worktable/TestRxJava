@@ -17,6 +17,7 @@ import info.ankurpandya.testrxjava.R;
 import info.ankurpandya.testrxjava.api.responses.Country;
 import info.ankurpandya.testrxjava.customviews.KeyValuePairView;
 import info.ankurpandya.testrxjava.fragments.BaseFragment;
+import info.ankurpandya.testrxjava.utils.StringUtils;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
 /**
@@ -126,7 +127,7 @@ public class FragmentCountryDetail extends BaseFragment {
         txt_gini.setText(String.valueOf(country.getGini()));
 
         Glide.with(getContext())
-                .load(country.getFlag())
+                .load(StringUtils.getFlagUrl(country.getAlpha2Code()))
                 .placeholder(R.drawable.img_default)
                 .error(R.drawable.img_error)
                 .into(img_country);

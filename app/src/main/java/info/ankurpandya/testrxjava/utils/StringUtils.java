@@ -65,6 +65,16 @@ public class StringUtils {
         return text != null && text.matches(pinCodePattern);
     }
 
+    public static String formatNumberCount(int count) {
+        return String.format("%02d", count);
+    }
+
+    public static String getFlagUrl(String countryCode) {
+        return isValidText(countryCode) ?
+                "https://www.countryflags.io/" + countryCode.toLowerCase() + "/flat/64.png" :
+                "";
+    }
+
     public static boolean isValidPinCodeLength(String text, String country) {
         switch (country) {
             case "SG":
